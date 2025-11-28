@@ -1,39 +1,118 @@
-// ১. রিয়েল-টাইম ক্লক ফাংশন
-function updateClock() {
-    const now = new Date();
-    // তারিখ, সময় এবং সেকেন্ড সহ ফরম্যাট
-    const timeString = now.toLocaleTimeString('bn-BD', { 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit',
-        hour12: true
-    });
-    
-    document.getElementById('real-time-clock').textContent = timeString;
+/* --- বেসিক স্টাইল এবং ব্যাকগ্রাউন্ড --- */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #f0f0f0;
+    background-color: #000;
+    overflow: hidden;
 }
 
-// প্রতি সেকেন্ডে ঘড়ি আপডেট করুন
-setInterval(updateClock, 1000);
-updateClock(); // পেজ লোড হওয়ার সাথে সাথে একবার কল করুন
-
-// ২. কার্ডে ক্লিক করলে গ্লো টগল ফাংশন
-function toggleGlow(element) {
-    element.classList.toggle('glowing');
-    
-    // মেসেজ দেখানোর জন্য
-    if (element.classList.contains('glowing')) {
-        console.log("কার্ডে ক্লিক করা হয়েছে, গ্লো অন!");
-    } else {
-        console.log("কার্ডে ক্লিক করা হয়েছে, গ্লো অফ!");
-    }
+/* ব্যাকগ্রাউন্ড ইমেজ স্টাইল */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('PLACEHOLDER_IMAGE_URL'); /* <--- এখানে আপনার ছবির লিংক/নাম দিন */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5) blur(3px); /* ছবিকে কিছুটা অন্ধকার এবং ঝাপসা করে কন্টেন্ট ফোকাস করতে */
+    z-index: -1;
+    transition: all 0.5s;
 }
 
-// ৩. বাটনে ক্লিক করার ফাংশন
-function performAction() {
-    // এখানে আপনার বাটনের কাঙ্খিত কাজটি লিখুন। 
-    // যেমন, একটি অ্যালার্ট বা নতুন পেজে নেভিগেট করা
-    alert("অভিনন্দন! আপনি গ্লোয়িং বাটনে ক্লিক করেছেন এবং এটি কাজ করেছে!");
-    
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    z-index: 10;
+}
+
+/* --- কার্ডের সাধারণ স্টাইল --- */
+.card {
+    background: rgba(18, 18, 18, 0.85);
+    border-radius: 12px;
+    padding: 25px 40px;
+    text-align: center;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* --- প্রতিটি কার্ডের জন্য আলাদা বর্ডার এবং গ্লো --- */
+
+/* কার্ড ১: নাম (গোলাপী গ্লো) */
+.card-one {
+    border: 2px solid #ff007f;
+    box-shadow: 0 0 10px #ff007f;
+}
+.card-one.glowing {
+    box-shadow: 0 0 20px #ff007f, 0 0 40px rgba(255, 0, 127, 0.7);
+}
+
+/* কার্ড ২: বর্ণনা (নীল গ্লো) */
+.card-two {
+    border: 2px solid #00c3ff;
+    box-shadow: 0 0 10px #00c3ff;
+}
+.card-two.glowing {
+    box-shadow: 0 0 20px #00c3ff, 0 0 40px rgba(0, 195, 255, 0.7);
+}
+
+/* কার্ড ৩: সময় (হলুদ গ্লো) */
+.card-three {
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 10px #ffcc00;
+}
+.card-three.glowing {
+    box-shadow: 0 0 20px #ffcc00, 0 0 40px rgba(255, 204, 0, 0.7);
+}
+
+/* ঘড়ি এবং সময় স্টাইল */
+#real-time-clock {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffcc00;
+    margin-top: 10px;
+}
+
+/* ডেভেলপার ইনফো */
+.developer-info {
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- পপআপ মেসেজ স্টাইল --- */
+.popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 255, 127, 0.9); /* সবুজ গ্লো */
+    color: #111;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 100;
+    box-shadow: 0 0 15px rgba(0, 255, 127, 0.9);
+}
+
+.popup.show {
+    opacity: 1;
+    transform: translateY(0);
+}
     // বা বাটনের গ্লো পরিবর্তন করা
     const button = document.getElementById('action-button');
     button.style.backgroundColor = '#66cc66'; // গ্রিন কালার
