@@ -3,31 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHANDNI HRIDOY</title>
+    <title>💖 CHANDNI HRIDOY 💖</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="background-animation">
-        <div class="love-animation"></div>
-        <div class="bird-animation"></div>
-    </div>
+    <div class="background-image"></div>
 
     <div class="container">
-        <div class="card website-name-card" onclick="toggleGlow(this)">
-            <h2>আমার সুন্দর ওয়েবসাইট</h2>
-            <p>আপনার ব্যক্তিগত ওয়েবসাইট</p>
+        
+        <div id="name-card" class="card card-one" onclick="toggleGlow('name-card', 'নাম')">
+            <h1>CHANDNI HRIDOY</h1>
+            <p>আমাদের ভালোবাসার সুন্দর পৃথিবী</p>
         </div>
         
-        <div class="card time-card" onclick="toggleGlow(this)">
-            <h3>শুরুর তারিখ: 25-11-2025</h3>
-            <div id="real-time-clock">সময় লোড হচ্ছে...</div>
+        <div id="desc-card" class="card card-two" onclick="toggleGlow('desc-card', 'বর্ণনা')">
+            <p>
+                যেখানে চাঁদনি আর হৃদয়ের স্পন্দন এক হয়ে মিশে যায়। 
+                এই পথচলা শুধু ভালোবাসার, যা সময়ের সাথে সাথে আরও দৃঢ় হয়।
+            </p>
         </div>
 
-        <button id="action-button" onclick="performAction()">
-            ক্লিক করুন!
-        </button>
+        <div id="time-card" class="card card-three" onclick="toggleGlow('time-card', 'সময়')">
+            <h3>শুরুর তারিখ: 25-11-2025</h3> <div id="real-time-clock"></div>
+        </div>
+        
+        <div class="developer-info">
+            <small>Developed with by HRIDOY</small>
+        </div>
     </div>
+    
+    <div id="popup-message" class="popup"></div>
 
     <script src="script.js"></script>
 </body>
