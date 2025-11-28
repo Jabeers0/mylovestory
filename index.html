@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💙✨ ভালোবাসার ড্যাশবোর্ড ✨💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* গ্লোবাল স্টাইল এবং নীল-গোলাপি থিম */
+        :root {
+            --primary-color: #00bcd4; /* হালকা নীল */
+            --secondary-color: #ff4081; /* গোলাপি */
+            --glow-blue: #0ff;
+            --glow-pink: #f0f;
+            --background-dark: #1a1a2e;
+            --text-light: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Baloo Da 2', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* হেডার এবং টাইম কাউন্টার */
+        header {
+            width: 90%;
+            max-width: 1200px;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        h1.headline {
+            font-size: 2.5em;
+            text-shadow: 0 0 10px var(--glow-blue), 0 0 20px var(--glow-pink);
+            margin-bottom: 20px;
+        }
+
+        .time-counter {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            font-size: 0.9em;
+            padding: 5px 10px;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            box-shadow: 0 0 5px var(--glow-blue);
+        }
+
+        /* ফটো গ্যালারি এবং ক্যাটাগরি */
+        .category-container {
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 30px;
+        }
+
+        .category-name {
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            text-shadow: 0 0 5px var(--glow-pink);
+            margin: 20px 0 10px;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding-bottom: 40px;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* লাভ গ্লো অন হোভার */
+        .photo-item img:hover {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 15px var(--glow-pink), 0 0 30px var(--glow-pink);
+            transform: scale(1.05);
+        }
+
+        /* পপ-আপ স্টাইল */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background: var(--background-dark);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            max-width: 80%;
+            box-shadow: 0 0 30px var(--glow-blue), 0 0 60px var(--glow-pink); /* নীল-গোলাপি গ্লো */
+            animation: pulse 1.5s infinite alternate; /* গ্লো অ্যানিমেশন */
+        }
+
+        @keyframes pulse {
+            from { box-shadow: 0 0 30px var(--glow-blue), 0 0 60px rgba(255, 64, 129, 0.5); }
+            to { box-shadow: 0 0 40px rgba(0, 188, 212, 0.7), 0 0 80px var(--glow-pink); }
+        }
+        
+        .popup-content img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2em;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+        /* আলাদা লেখার জায়গা এবং রঙ পরিবর্তন */
+        .link-section {
+            width: 90%;
+            max-width: 1200px;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 30px;
+            border-top: 1px solid var(--primary-color);
+        }
+
+        .page-link {
+            font-size: 1.8em;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 5px;
+            transition: all 0.4s ease-in-out;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .page-link:hover {
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+            box-shadow: 0 0 10px var(--glow-blue), 0 0 20px var(--glow-blue);
+        }
+
+        /* ফন্ট কালার টগল ক্লাস */
+        .color-blue { color: var(--primary-color); }
+        .color-pink { color: var(--secondary-color); }
+        .color-white { color: var(--text-light); }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="headline">💙 আমার ভালোবাসার পৃথিবী 💖</h1>
+        <div class="time-counter">
+            <p>শুরুর তারিখ: <span id="start-date">2024-02-14</span></p>
+            <p>আজকের দিন: <span id="current-date-time"></span></p>
+            <p>একসাথে: <span id="days-passed"></span> দিন</p>
+        </div>
+    </header>
+
+    <div class="category-container">
+        
+        <h2 class="category-name">স্মৃতি: প্রথম দেখা</h2>
+        <div class="photo-gallery">
+            <div class="photo-item"><img src="image1.jpg" alt="ছবি ১" onclick="openPopup(this)"></div>
+            <div class="photo-item"><img src="image2.jpg" alt="ছবি ২" onclick="openPopup(this)"></div>
+            <div class="photo-item"><img src="image3.jpg" alt="ছবি ৩" onclick="openPopup(this)"></div>
+        </div>
+
+        <h2 class="category-name">প্রিয় মুহূর্ত</h2>
+        <div class="photo-gallery">
+            <div class="photo-item"><img src="image4.jpg" alt="ছবি ৪" onclick="openPopup(this)"></div>
+            <div class="photo-item"><img src="image5.jpg" alt="ছবি ৫" onclick="openPopup(this)"></div>
+            <div class="photo-item"><img src="image6.jpg" alt="ছবি ৬" onclick="openPopup(this)"></div>
+        </div>
+    </div>
+    
+    <div class="link-section">
+        <a id="special-link" href="new_page.html" class="page-link color-pink">💌 আমাদের গল্প পড়ুন এখানে </a>
+        <p style="margin-top: 15px; font-size: 0.9em;">(এই লেখাটিতে ক্লিক করলে নতুন পেজ খুলবে)</p>
+        <button onclick="changeLinkColor()" style="background: var(--primary-color); color: var(--background-dark); border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; margin-top: 10px;">রঙ বদলান</button>
+    </div>
+
+    <div id="image-popup" class="popup" onclick="closePopup(event)">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">×</span>
+            <img id="popup-image" src="" alt="Popup Image">
+        </div>
+    </div>
+    
+    <script>
+        // --- JavaScript কোড ---
+
+        // ১. পপ-আপ ফাংশন
+        function openPopup(imgElement) {
+            const popup = document.getElementById('image-popup');
+            const popupImage = document.getElementById('popup-image');
+            popupImage.src = imgElement.src;
+            // এইখানে ছবি URL বদলানোর আগে, আপনার ছবিগুলোর সঠিক URL দিতে হবে। 
+            // উদাহরণ: image1.jpg, image2.jpg...
+            popup.style.display = 'flex';
+        }
+
+        function closePopup(event) {
+            const popup = document.getElementById('image-popup');
+            // যদি ইভেন্ট (ক্লিক) পপ-আপের বাইরের অংশে হয় বা ক্রস বাটনে হয়
+            if (!event || event.target === popup || event.target.className === 'close-btn') {
+                popup.style.display = 'none';
+            }
+        }
+
+        // ২. সময় এবং দিন গণনার ফাংশন
+        function updateTimeAndCounter() {
+            const startDateStr = "2024-02-14"; // আপনার শুরুর তারিখ দিন (Year-Month-Day)
+            const startDate = new Date(startDateStr);
+            const today = new Date();
+
+            // সময় প্রদর্শন 
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('current-date-time').textContent = today.toLocaleDateString('bn-BD', options);
+            
+            // দিন গণনা
+            const timeDifference = today.getTime() - startDate.getTime();
+            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            document.getElementById('days-passed').textContent = daysPassed;
+        }
+
+        // ৩. লেখার ফন্টের রঙ পরিবর্তনের ফাংশন
+        let colorIndex = 0;
+        const colors = ['color-pink', 'color-blue', 'color-white'];
+        
+        function changeLinkColor() {
+            const link = document.getElementById('special-link');
+            
+            // আগের রঙ সরান
+            link.classList.remove(...colors); 
+            
+            // নতুন রঙ যোগ করুন
+            colorIndex = (colorIndex + 1) % colors.length;
+            link.classList.add(colors[colorIndex]);
+        }
+
+        // প্রতি সেকেন্ডে সময় আপডেট
+        setInterval(updateTimeAndCounter, 1000);
+        updateTimeAndCounter(); // পেজ লোড হওয়ার সাথে সাথে একবার চালু করুন
+    </script>
+
+</body>
+</html>
