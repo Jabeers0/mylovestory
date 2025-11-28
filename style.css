@@ -1,0 +1,146 @@
+/* পুরো পেজের স্টাইল এবং অ্যানিমেটেড ব্যাকগ্রাউন্ড */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #121212; /* গাঢ় ব্যাকগ্রাউন্ড গ্লো ভালো দেখায় */
+    overflow: hidden; /* অ্যানিমেশন এরিয়া ম্যানেজ করতে */
+    color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    z-index: 10; /* অ্যানিমেশনের উপরে রাখতে */
+}
+
+/* গ্লোয়িং কার্ড স্টাইল */
+.card {
+    background: rgba(30, 30, 30, 0.8);
+    border: 2px solid #555;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 180, 255, 0.5); /* প্রাথমিক গ্লো */
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+/* ক্লিক বা হোভার করলে গ্লো ইফেক্ট */
+.card:hover, .card.glowing {
+    /* গ্লো এর কালার এবং তীব্রতা বৃদ্ধি */
+    border-color: #00bfff; 
+    box-shadow: 0 0 20px #00bfff, 0 0 40px rgba(0, 180, 255, 0.7), 0 0 60px rgba(0, 180, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.card h2, .card h3 {
+    margin-top: 0;
+}
+
+/* রিয়েল-টাইম ক্লক স্টাইল */
+#real-time-clock {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffcc00; /* আলাদা উজ্জ্বল রঙ */
+}
+
+
+/* --- বাটন স্টাইল --- */
+#action-button {
+    background-color: #ff3366;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 51, 102, 0.7);
+    transition: all 0.3s ease;
+}
+
+#action-button:hover {
+    background-color: #ff5588;
+    box-shadow: 0 0 20px #ff3366, 0 0 30px #ff3366;
+    transform: translateY(-3px);
+}
+
+
+/* --- ব্যাকগ্রাউন্ড অ্যানিমেশন --- */
+
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+    pointer-events: none; /* ক্লিকের ঘটনা এড়াতে */
+}
+
+/* লাভার অ্যানিমেশন */
+.love-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* একটি লাভ তৈরি */
+.love-animation::before {
+    content: '💖';
+    position: absolute;
+    font-size: 40px;
+    animation: flyLove 10s linear infinite;
+    opacity: 0.8;
+    color: red; 
+}
+
+@keyframes flyLove {
+    0% {
+        top: 100%;
+        left: 10%;
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        top: -10%;
+        left: 90%;
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* পাখির অ্যানিমেশন */
+.bird-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+/* একটি কাল্পনিক পাখি (আইকন হিসেবে) */
+.bird-animation::after {
+    content: '🦅'; 
+    position: absolute;
+    font-size: 30px;
+    animation: flyBird 15s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes flyBird {
+    0% {
+        top: 50%;
+        left: -10%;
+    }
+    100% {
+        top: 20%;
+        left: 110%;
+        transform: scaleX(-1); /* অন্য দিকে মুখ ঘোরানো */
+    }
+}
