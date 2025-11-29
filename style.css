@@ -4,11 +4,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 40vh;
+    /* এখানে পরিবর্তন করা হয়েছে: এটি 40vh থেকে 100vh করা হয়েছে যাতে পুরো স্ক্রিন জুড়ে থাকে */
+    min-height: 100vh;
     margin: 0;
     color: #f0f0f0;
     background-color: #000;
-    overflow: hidden;
+    overflow-x: hidden; /* অনুভূমিক স্ক্রলিং এড়াতে */
 }
 
 /* ব্যাকগ্রাউন্ড ইমেজ স্টাইল */
@@ -32,13 +33,20 @@ body {
     gap: 20px;
     align-items: center;
     z-index: 10;
+    /* মোবাইলের জন্য প্যাডিং যোগ করা হয়েছে */
+    padding: 20px; 
+    width: 90%; /* মোবাইলের স্ক্রিনের সাথে মানানসই করতে */
+    box-sizing: border-box; /* padding যাতে width এর বাইরে না যায় */
 }
 
 /* --- কার্ডের সাধারণ স্টাইল --- */
 .card {
     background: rgba(18, 18, 18, 0.85);
     border-radius: 12px;
-    padding: 25px 40px;
+    /* মোবাইলের জন্য প্যাডিং কমানো যেতে পারে */
+    padding: 20px 30px; 
+    width: 100%; /* কন্টেইনারের পুরো জায়গা নেবে */
+    max-width: 400px; /* অতিরিক্ত বড় স্ক্রিনের জন্য সর্বোচ্চ প্রস্থ */
     text-align: center;
     transition: all 0.4s ease-in-out;
     cursor: pointer;
@@ -69,47 +77,14 @@ body {
     box-shadow: 0 0 20px #00c3ff, 0 0 40px rgba(0, 195, 255, 0.7);
 }
 
-/* কার্ড ৩: সময় (হলুদ গ্লো) */
-.card-three {
-    border: 2px solid #ffcc00;
-    box-shadow: 0 0 10px #ffcc00;
-}
-.card-three.glowing {
-    box-shadow: 0 0 20px #ffcc00, 0 0 40px rgba(255, 204, 0, 0.7);
-}
+/* --- মোবাইল ডিভাইসের জন্য নির্দিষ্ট পরিবর্তন (ঐচ্ছিক কিন্তু বাঞ্ছনীয়) --- */
+@media (max-width: 600px) {
+    .container {
+        gap: 15px; /* মোবাইলে কার্ডগুলোর মধ্যে ব্যবধান সামান্য কমানো */
+    }
 
-/* ঘড়ি এবং সময় স্টাইল */
-#real-time-clock {
-    font-size: 2em;
-    font-weight: bold;
-    color: #ffcc00;
-    margin-top: 10px;
-}
-
-/* ডেভেলপার ইনফো */
-.developer-info {
-    margin-top: 15px;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-/* --- পপআপ মেসেজ স্টাইল --- */
-.popup {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: rgba(0, 255, 127, 0.9); /* সবুজ গ্লো */
-    color: #111;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    opacity: 0;
-    transform: translateY(100%);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    z-index: 100;
-    box-shadow: 0 0 15px rgba(0, 255, 127, 0.9);
-}
-
-.popup.show {
-    opacity: 1;
-    transform: translateY(0);
-        }
+    .card {
+        padding: 15px 20px; /* মোবাইলের জন্য আরও কম প্যাডিং */
+        border-radius: 10px;
+    }
+    }
